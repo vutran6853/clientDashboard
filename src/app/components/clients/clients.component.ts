@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
+
 import { Client } from '../../models/Client';
 
 @Component({
@@ -16,14 +17,14 @@ export class ClientsComponent implements OnInit {
   ngOnInit() {
     this.clientService.getClients().subscribe(clients => {
       this.clients = clients;
-      this.getTotalOwned();
+      this.getTotalOwed();
     });
   }
 
-  getTotalOwned() {
+  getTotalOwed() {
     this.totalOwed = this.clients.reduce((total, client) => {
-      return total + client.balance;
+      return total + parseFloat(client.balance.toString());
     }, 0);
-}
+  }
 
 }
